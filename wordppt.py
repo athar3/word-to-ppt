@@ -2,23 +2,22 @@ import docx
 from pptx import Presentation
 from pptx.util import Inches
 
-# membaca file word
+#baca file word
 doc = docx.Document('filtes.docx')
 
-# membuat presentasi powerpoint
+#presentasi powerpoint
 prs = Presentation()
 
-# loop untuk setiap paragraf pada file word
+# loop tiap paragraf di file word
 for para in doc.paragraphs:
-    # menambahkan slide baru pada presentasi powerpoint
+    # add slide baru di ppt
     slide = prs.slides.add_slide(prs.slide_layouts[1])
     
-    # menambahkan teks paragraf pada kotak teks di bawah judul pada slide
-    
+    # add teks paragraf di kotak teks
     text_frame = slide.placeholders[1].text_frame
     text_frame.text = ''
     for run in para.runs:
         text_frame.text += run.text
     
-# menyimpan presentasi powerpoint
+# simpan ppt
 prs.save('filtes.pptx')
